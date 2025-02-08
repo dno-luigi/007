@@ -12,10 +12,6 @@ const menuButton = document.getElementById('menuButton');
     const responseInstructionsInput = document.getElementById('responseInstructionsInput');
     const aiSpeechToggle = document.getElementById('aiSpeechToggle');
     const toggleMode = document.getElementById('toggleMode');
-    const addModelButton = document.getElementById('addModelButton');
-    const onboardingPopup = document.getElementById('onboardingPopup');
-    const nextPopupButton = document.getElementById('nextPopup');
-    const closePopupButton = document.querySelector('.close-popup');
 
     let recognizing = false;
     let recognition;
@@ -25,7 +21,6 @@ const menuButton = document.getElementById('menuButton');
     let responseInstructions = '';
     let aiSpeechEnabled = true;
     let isDarkMode = false;
-    let onboardingStep = 0;
 
     // Initialize speech recognition if supported
     function initializeSpeechRecognition() {
@@ -213,34 +208,6 @@ const menuButton = document.getElementById('menuButton');
       toggleMode.innerHTML = modeIcon;
     }
 
-    // Onboarding functionality
-    function showOnboardingPopup() {
-      onboardingPopup.style.display = 'block';
-      onboardingStep = 0;
-      updateOnboardingContent();
-    }
-
-    function updateOnboardingContent() {
-      const onboardingMessages = [
-        "Welcome to DFY-AI! To access our curated lists, you need to learn how to add a model using the proper format.",
-        "Format: <strong>model_name:free</strong> (e.g., <strong>google/gemini-2.0-flash-lite-preview-02-05:free</strong>)",
-        "Great! Now try adding a model using the input above."
-      ];
-
-      if (onboardingStep < onboardingMessages.length) {
-        document.querySelector('.popup-content h2').innerHTML = onboardingMessages[onboardingStep];
-        onboardingStep++;
-      } else {
-        onboardingPopup.style.display = 'none'; // Close the popup after the last step
-      }
-    }
-
-    // Event listeners for onboarding
-    nextPopupButton.addEventListener('click', updateOnboardingContent);
-    closePopupButton.addEventListener('click', () => {
-      onboardingPopup.style.display = 'none';
-    });
-
     // Event listeners
     menuButton.addEventListener('click', toggleApplet);
     saveSettings.addEventListener('click', () => {
@@ -278,7 +245,6 @@ const menuButton = document.getElementById('menuButton');
       initializeSpeechRecognition();
       loadSettingsFromLocalStorage();
       updateTalkButtonText();
-      showOnboardingPopup(); // Show onboarding on app load
     }
 
     // Load settings from local storage

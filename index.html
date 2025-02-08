@@ -35,11 +35,13 @@
             <div class="setting-item">
               <label for="favoriteModelSelect">Favorite Models</label>
               <select id="favoriteModelSelect">
+                <option value="google/gemini-2.0-flash-lite-preview-02-05:free">Google Gemini 2.0 Flash Lite</option>
+                <option value="deepseek/deepseek-chat:free">DeepSeek Chat</option>
                 <option value="manual">Manual Entry</option>
               </select>
             </div>
             <div class="setting-item">
-              <label for="manualModelInput">Enter Model</label>
+              <label for="manualModelInput">Or Enter Model</label>
               <input type="text" id="manualModelInput" placeholder="Enter your model string">
               <button id="addModelButton">Add Model</button>
             </div>
@@ -61,15 +63,6 @@
             </div>
             <button id="saveSettings">Save Settings</button>
           </div>
-        </div>
-      </div>
-      <div id="onboardingPopup" class="popup">
-        <div class="popup-content">
-          <span class="close-popup">&times;</span>
-          <h2>Welcome to DFY-AI!</h2>
-          <p>To access our curated lists, you need to learn how to add a model using the proper format.</p>
-          <p>Format: <strong>model_name:free</strong> (e.g., <strong>google/gemini-2.0-flash-lite-preview-02-05:free</strong>)</p>
-          <button id="nextPopup">Next</button>
         </div>
       </div>
       <script src="script.js"></script>
