@@ -29,8 +29,7 @@
       padding: 1rem 0;
       display: flex;
       justify-content: space-between;
-      background-color: #f4f4f4; /* Light background for header in light mode */
-      transition: background-color 0.3s ease;
+      background-color: transparent;
     }
 
     .header-icons {
@@ -179,10 +178,6 @@
     .dark-mode .main {
       background-color: #000000; /* Black background for main display in dark mode */
       color: #f7fafc; /* Light text in dark mode */
-    }
-
-    .dark-mode .header {
-      background-color: #1a1a1a; /* Dark grey background for header in dark mode */
     }
 
     .dark-mode .header-icons button {
