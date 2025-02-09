@@ -1,70 +1,69 @@
 <!DOCTYPE html>
-    <html lang="en">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Chat App</title>
-      <link rel="stylesheet" href="style.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.2.12/marked.min.js"></script>
-    </head>
-    <body>
-      <div class="container">
-        <header>
-          <div class="header-icons">
-            <button id="menuButton"><i class="fas fa-bars"></i></button>
-            <button id="toggleMode"><i class="fas fa-moon"></i></button>
-          </div>
-        </header>
-        <main class="main">
-          <div id="conversation" class="conversation"></div>
-        </main>
-        <footer>
-          <input type="text" id="messageInput" class="message-input" placeholder="Type your message...">
-          <button id="talkButton" class="talk-button"><i class="fas fa-microphone"></i></button>
-        </footer>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat App</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.2.12/marked.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="header-icons">
+        <button id="menuButton"><i class="fas fa-bars"></i></button>
+        <button id="toggleMode"><i class="fas fa-moon"></i></button>
       </div>
-      <div id="applet" class="applet">
-        <div class="settings-panel">
-          <div class="settings-header">
-            <h2>Settings</h2>
-            <button id="closeSettings"><i class="fas fa-times"></i></button>
-          </div>
-          <div class="settings-content">
-            <div class="setting-item">
-              <label for="favoriteModelSelect">Favorite Models</label>
-              <select id="favoriteModelSelect">
-                <option value="google/gemini-2.0-flash-lite-preview-02-05:free">Google Gemini 2.0 Flash Lite</option>
-                <option value="deepseek/deepseek-chat:free">DeepSeek Chat</option>
-                <option value="manual">Manual Entry</option>
-              </select>
-            </div>
-            <div class="setting-item">
-              <label for="manualModelInput">Or Enter Model</label>
-              <input type="text" id="manualModelInput" placeholder="Enter your model string">
-              <button id="addModelButton">Add Model</button>
-            </div>
-            <div class="setting-item">
-              <label for="apiKeyInput">OpenRouter API Key</label>
-              <input type="text" id="apiKeyInput" required>
-            </div>
-            <div class="setting-item">
-              <label for="userInfoInput">User Info</label>
-              <textarea id="userInfoInput" placeholder="What you should know about me"></textarea>
-            </div>
-            <div class="setting-item">
-              <label for="responseInstructionsInput">Response Instructions</label>
-              <textarea id="responseInstructionsInput" placeholder="How you will respond"></textarea>
-            </div>
-            <div class="setting-item">
-              <label for="aiSpeechToggle">Enable AI Speech</label>
-              <input type="checkbox" id="aiSpeechToggle">
-            </div>
-            <button id="saveSettings">Save Settings</button>
-          </div>
+    </header>
+    <main class="main">
+      <div id="conversation" class="conversation"></div>
+    </main>
+    <footer>
+      <input type="text" id="messageInput" class="message-input" placeholder="Type your message...">
+      <button id="talkButton" class="talk-button"><i class="fas fa-microphone"></i></button>
+    </footer>
+  </div>
+  <div id="applet" class="applet">
+    <div class="settings-panel">
+      <div class="settings-header">
+        <h2>Settings</h2>
+      </div>
+      <div class="settings-content">
+        <div class="setting-item">
+          <label for="favoriteModelSelect">Favorite Models</label>
+          <select id="favoriteModelSelect">
+            <option value="google/gemini-2.0-flash-lite-preview-02-05:free">Google Gemini 2.0 Flash Lite</option>
+            <option value="deepseek/deepseek-chat:free">DeepSeek Chat</option>
+            <option value="manual">Manual Entry</option>
+          </select>
         </div>
+        <div class="setting-item">
+          <label for="manualModelInput">Or Enter Model</label>
+          <input type="text" id="manualModelInput" placeholder="Enter your model string">
+          <button id="addModelButton">Add Model</button>
+        </div>
+        <div class="setting-item">
+          <label for="apiKeyInput">OpenRouter API Key</label>
+          <input type="text" id="apiKeyInput" required>
+        </div>
+        <div class="setting-item">
+          <label for="userInfoInput">User Info</label>
+          <textarea id="userInfoInput" placeholder="What you should know about me"></textarea>
+        </div>
+        <div class="setting-item">
+          <label for="responseInstructionsInput">Response Instructions</label>
+          <textarea id="responseInstructionsInput" placeholder="How you will respond"></textarea>
+        </div>
+        <div class="setting-item">
+          <label for="aiSpeechToggle">Enable AI Speech</label>
+          <input type="checkbox" id="aiSpeechToggle">
+        </div>
+        <button id="saveSettings">Save Settings</button>
       </div>
-      <script src="script.js"></script>
-    </body>
-    </html>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
