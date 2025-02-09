@@ -32,6 +32,16 @@ const menuButton = document.getElementById('menuButton');
       return button;
     }
 
+    // Function to sanitize text for speech synthesis
+    function sanitizeTextForSpeech(text) {
+      // Replace markdown formatting with spoken equivalents
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '$1') // Remove bold formatting
+        .replace(/\*(.*?)\*/g, '$1') // Remove italic formatting
+        .replace(/`(.*?)`/g, '$1') // Remove inline code formatting
+        .replace(/```(.*?)```/g, 'Here is the code: $1'); // Handle code blocks
+    }
+
     // Initialize speech recognition if supported
     function initializeSpeechRecognition() {
       if ('webkitSpeechRecognition' in window) {
@@ -156,7 +166,27 @@ const menuButton = document.getElementById('menuButton');
     function appendAIMessage(aiMessageContent) {
       const aiMessageElement = document.createElement('div');
       aiMessageElement.classList.add('message', 'ai-message');
-      aiMessageElement.innerHTML = marked.parse(aiMessageContent);
+
+      // Create a code block if the content is a code block
+      if (aiMessageContent.startsWith('```') && aiMessageContent.endsWith('```')) {
+        const codeContent = aiMessageContent.slice(3, -3).trim(); // Remove the ``` markers
+        const codeBlock = document.createElement('pre');
+        codeBlock.classList.add('code-block');
+        codeBlock.style.backgroundColor = 'black'; // Set background color for code block
+        codeBlock.textContent = codeContent;
+
+        // Add copy button to the code block
+        const copyButton = createButton('Copy', () => {
+          navigator.clipboard.writeText(codeContent).then(() => {
+            alert('Code copied to clipboard');
+          });
+        });
+        codeBlock.appendChild(copyButton);
+        aiMessageElement.appendChild(codeBlock);
+      } else {
+        aiMessageElement.innerHTML = marked.parse(aiMessageContent);
+      }
+
       addMessageButtons(aiMessageElement, aiMessageContent);
       conversation.appendChild(aiMessageElement);
       conversation.scrollTop = conversation.scrollHeight;
@@ -165,7 +195,7 @@ const menuButton = document.getElementById('menuButton');
         if (currentUtterance) {
           speechSynthesis.cancel(); // Stop any ongoing speech
         }
-        currentUtterance = new SpeechSynthesisUtterance(aiMessageContent);
+        currentUtterance = new SpeechSynthesisUtterance(sanitizeTextForSpeech(aiMessageContent));
         currentUtterance.lang = 'en-US';
         speechSynthesis.speak(currentUtterance);
       }
@@ -186,7 +216,7 @@ const menuButton = document.getElementById('menuButton');
         if (currentUtterance) {
           speechSynthesis.cancel(); // Stop any ongoing speech
         }
-        currentUtterance = new SpeechSynthesisUtterance(aiMessageContent);
+        currentUtterance = new SpeechSynthesisUtterance(sanitizeTextForSpeech(aiMessageContent));
         currentUtterance.lang = 'en-US';
         speechSynthesis.speak(currentUtterance);
       });
@@ -242,6 +272,7 @@ const menuButton = document.getElementById('menuButton');
       } else if (aiSpeechEnabled && 'webkitSpeechRecognition' in window) {
         recognition.start();
       }
+      speechSynthesis.cancel(); // Interrupt any ongoing speech when the button is clicked
     });
 
     messageInput.addEventListener('keydown', (event) => {

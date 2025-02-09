@@ -38,14 +38,18 @@
             <div class="setting-item">
               <label for="favoriteModelSelect">model options</label>
               <select id="favoriteModelSelect">
-                <option value="google/gemini-2.0-flash-lite-preview-02-05:free">Google Gemini 2.0 Flash Lite</option>
-                <option value="deepseek/deepseek-chat:free">DeepSeek Chat</option>
-                <option value="manual">manual model mode</option>
+                <option value="manual">manual mode</option>
+                <option value="deepseek/deepseek-r1-distill-llama-8b" selected>ds r1 thinker (dist.)</option>
+                <option value="google/gemini-flash-1.5-8b">gemma flsh 1.5</option>
+                <option value="liquid/lfm-7b">mistr moe 7</option>
+                <option value="mistralai/mixtral-8x7b-instruct">mistral mix 7</option>
+                <option value="meta-llama/llama-3.2-11b-vision-instruct">llamaVision11</option>
+                <option value="perplexity/llama-3.1-sonar-small-128k-online">diyPlexOnline</option>
               </select>
             </div>
             <div class="setting-item">
               <label for="manualModelInput">manual mode</label>
-              <input type="text" id="manualModelInput" placeholder="your model">
+              <input type="text" id="manualModelInput" placeholder="deepseek/deepseek-r1-distill-llama-8b">
               <button id="addModelButton">Add Model</button>
             </div>
             <div class="setting-item">
